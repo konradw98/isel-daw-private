@@ -12,4 +12,27 @@ public class Project {
     private long pid;
     private String name;
 
+    public Project() {
+    }
+
+    public Project(long pid, String name) {
+        this.pid = pid;
+        this.name = name;
+    }
+
+    public long getPid() {
+        return pid;
+    }
+
+    public void setPid(long pid) {
+        this.pid = pid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
