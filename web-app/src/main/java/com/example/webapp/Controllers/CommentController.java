@@ -16,6 +16,8 @@ public class CommentController {
     public Comment getCommentById(@PathVariable Long id){
         return  commentService.findCommentById(id);
     }
+
+
     @GetMapping("issues/{iid}/comments")
     public List<Comment> getCommentsByIssueId(@PathVariable Long iid){
         return  commentService.findCommentsByIssueId(iid);

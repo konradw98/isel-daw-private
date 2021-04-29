@@ -1,9 +1,16 @@
 package com.example.webapp.Models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "iid")
 public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,13 +21,18 @@ public class Issue {
     private Date closeDate;
     private String label; // maybe it should be enum???
     private String state; // same as up
+
     @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
     private Project project;
+
+    @OneToMany(mappedBy = "issue")
+    private List<Comment> comments;
 
     public Issue() {
     }
 
-    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String label, String state, Project project) {
+    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String label, String state, Project project, List<Comment> comments) {
         this.iid = iid;
         this.name = name;
         this.description = description;
@@ -29,6 +41,7 @@ public class Issue {
         this.label = label;
         this.state = state;
         this.project = project;
+        this.comments = comments;
     }
 
     public long getIid() {
@@ -93,5 +106,13 @@ public class Issue {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
