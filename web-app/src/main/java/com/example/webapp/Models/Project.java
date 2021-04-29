@@ -3,10 +3,7 @@ package com.example.webapp.Models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "pid")
@@ -14,6 +11,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long pid;
+    @Column(unique=true)
     private String name;
 
     public Project() {
