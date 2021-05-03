@@ -2,6 +2,7 @@ package com.example.webapp.Models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -19,8 +20,11 @@ public class Issue {
     private String description;
     private Date creationDate;
     private Date closeDate;
-    private String label; // maybe it should be enum???
+    //private String label; // maybe it should be enum???
     private String state; // same as up
+    //@JsonIgnoreProperties("lid")
+    @OneToMany(mappedBy = "issue")
+    private List<Label> labels;
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
@@ -32,14 +36,14 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String label, String state, Project project, List<Comment> comments) {
+    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String state, List<Label> labels, Project project, List<Comment> comments) {
         this.iid = iid;
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
         this.closeDate = closeDate;
-        this.label = label;
         this.state = state;
+        this.labels = labels;
         this.project = project;
         this.comments = comments;
     }
@@ -84,12 +88,12 @@ public class Issue {
         this.closeDate = closeDate;
     }
 
-    public String getLabel() {
-        return label;
+    public List<Label> getLabels() {
+        return labels;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 
     public String getState() {
