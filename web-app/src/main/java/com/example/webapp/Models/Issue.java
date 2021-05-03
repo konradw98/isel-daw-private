@@ -21,7 +21,8 @@ public class Issue {
     private Date creationDate;
     private Date closeDate;
     //private String label; // maybe it should be enum???
-    private String state; // same as up
+    @OneToMany(mappedBy = "issue")
+    private List<State> states;
     //@JsonIgnoreProperties("lid")
     @OneToMany(mappedBy = "issue")
     private List<Label> labels;
@@ -36,13 +37,13 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String state, List<Label> labels, Project project, List<Comment> comments) {
+    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, List<State> states, List<Label> labels, Project project, List<Comment> comments) {
         this.iid = iid;
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
         this.closeDate = closeDate;
-        this.state = state;
+        this.states = states;
         this.labels = labels;
         this.project = project;
         this.comments = comments;
@@ -96,12 +97,12 @@ public class Issue {
         this.labels = labels;
     }
 
-    public String getState() {
-        return state;
+    public List<State> getStates() {
+        return states;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStates(List<State> states) {
+        this.states = states;
     }
 
     public Project getProject() {
