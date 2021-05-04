@@ -20,6 +20,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.4.5'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.5'
 
 }
 

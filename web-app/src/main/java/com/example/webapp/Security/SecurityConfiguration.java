@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+public class SecurityConfiguration{}
+/*
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -28,4 +30,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-}
+}*/
