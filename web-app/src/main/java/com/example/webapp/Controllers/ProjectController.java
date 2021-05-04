@@ -21,6 +21,11 @@ public class ProjectController {
         return projectService.saveProject(project);
     }
 
+    @DeleteMapping("/projects/{id}")
+    void deleteProject(@PathVariable Long id) {
+        projectService.deleteById(id);
+    }
+
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
     }

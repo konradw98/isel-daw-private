@@ -21,6 +21,11 @@ public class IssueController {
         return issueService.saveIssue(issue);
     }
 
+    @DeleteMapping("/issues/{id}")
+    void deleteIssue(@PathVariable Long id) {
+        issueService.deleteById(id);
+    }
+
     public IssueController(IssueService issueService) {
         this.issueService = issueService;
     }

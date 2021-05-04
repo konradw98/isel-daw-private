@@ -18,6 +18,9 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
+    public void deleteById(Long id){
+        issueRepository.deleteById(id);
+    }
     public IssueService(IssueRepository issueRepository) {
         this.issueRepository = issueRepository;
     }

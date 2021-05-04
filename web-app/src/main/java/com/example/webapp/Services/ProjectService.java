@@ -16,6 +16,9 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
+    public void deleteById(Long id){
+        projectRepository.deleteById(id);
+    }
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
