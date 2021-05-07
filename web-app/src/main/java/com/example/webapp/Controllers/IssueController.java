@@ -6,12 +6,14 @@ import com.example.webapp.Services.IssueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class IssueController {
     IssueService issueService;
 
     @GetMapping("issues/{id}")
-    public Issue getCustomerById(@PathVariable Long id){
+    public Issue getIssueById(@PathVariable Long id){
         return  issueService.findIssueById(id);
     }
 
@@ -24,6 +26,11 @@ public class IssueController {
     @DeleteMapping("/issues/{id}")
     void deleteIssue(@PathVariable Long id) {
         issueService.deleteById(id);
+    }
+
+    @GetMapping("issues/project/{pid}")
+    public List<Issue> getIssuesByProjectId(@PathVariable Long pid){
+        return  issueService.findIssuesByProjectId(pid);
     }
 
     public IssueController(IssueService issueService) {

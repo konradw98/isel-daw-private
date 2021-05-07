@@ -31,7 +31,7 @@ public class CommentController {
     }
 
     @PutMapping("/comments/{id}")
-    public ResponseEntity<Comment> updateEmployee(@PathVariable(value = "id") Long commentId,
+    public ResponseEntity<Comment> updateComment(@PathVariable(value = "id") Long commentId,
                                                   @RequestBody Comment commentDetails) throws Exception {
         Comment comment= commentService.findCommentById(commentId);
         if(comment==null) throw new Exception("Comment not found for this id :: " + commentId);

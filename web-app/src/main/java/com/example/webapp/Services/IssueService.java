@@ -24,4 +24,8 @@ public class IssueService {
     public IssueService(IssueRepository issueRepository) {
         this.issueRepository = issueRepository;
     }
+
+    public List<Issue> findIssuesByProjectId(Long pid) {
+        return  issueRepository.findIssueByProject(pid);
+    }
 }
