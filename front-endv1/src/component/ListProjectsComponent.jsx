@@ -14,6 +14,8 @@ class ListProjectsComponent extends Component {
         //this.deleteCourseClicked = this.deleteCourseClicked.bind(this)
         //this.updateProjectClicked = this.updateProjectClicked.bind(this)
         this.addProjectClicked = this.addProjectClicked.bind(this)
+        this.showIssuesProjectClicked = this.showIssuesProjectClicked.bind(this)
+
 
 
     }
@@ -52,6 +54,13 @@ class ListProjectsComponent extends Component {
         this.props.history.push(`/projects/-1`)
     }
 
+    showIssuesProjectClicked(id){
+        console.log("ID w project clicked="+id)
+        //this.props.history.push(`issues/project/1`) 
+
+        this.props.history.push(`issues/project/${id}`) 
+    }
+
     render() {
         return (
             <div className="container">
@@ -64,6 +73,7 @@ class ListProjectsComponent extends Component {
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Update</th>
+                                <th>Issues</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +85,8 @@ class ListProjectsComponent extends Component {
                                         <td>{project.name}</td>
                                         <td><button className="btn btn-warning" onClick={() => this.deleteProjectClicked(project.pid)}>Delete</button></td>
                                         <td><button className="btn btn-success" onClick={() => this.updateProjectClicked(project.pid)}>Update</button></td>
+                                        <td><button className="btn btn-success" onClick={() => this.showIssuesProjectClicked(project.pid)}>ShowIssues</button></td>
+
                                     </tr>
                                 )
                             }
