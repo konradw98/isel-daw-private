@@ -10,7 +10,7 @@ class ListIssuesComponent extends Component {
 
         this.state={
             id: this.props.match.params.id,
-            
+            issues: []
         }
 
         this.refreshIssues = this.refreshIssues.bind(this)
@@ -27,20 +27,47 @@ class ListIssuesComponent extends Component {
         ProjectDataService.retrieveIssueForPeoject(id)
             .then(
                 response => {
+                    //this.setState({ courses: response.data })
                     console.log(response);
+                    this.setState({issues:response.data})
                 }
             )
     }
 
 
     render(){
-        return(
-        <div className="conainer">
-            <h2>ISSUES</h2>
-            <p>1aaa</p>
-            <p>2aa</p>
-            <p>3aa</p>
-        </div>)
+        return (
+            <div className="container">
+                <h3>All Issues</h3>
+                <div className="container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Creation Date</th>
+                                <th>Closed Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.issues.map(
+                                    issue =>
+                                        <tr key={issue.id}>
+                                            <td>{issue.iid}</td>
+                                            <td>{issue.name}</td>
+                                            <td>{issue.description}</td>
+                                            <td>{issue.creationDate}</td>
+                                            <td>{issue.closedDate}</td>
+                                        </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        )
     }
 }
 
