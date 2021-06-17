@@ -59,7 +59,7 @@ class ListIssuesComponent extends Component {
                                             <td>{issue.name}</td>
                                             <td>{issue.description}</td>
                                             <td>{issue.creationDate}</td>
-                                            <td>{issue.closedDate}</td>
+                                            <td>{issue.closeDate}</td>
                                         </tr>
                                 )
                             }
