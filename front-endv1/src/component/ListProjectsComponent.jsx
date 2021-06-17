@@ -72,6 +72,7 @@ class ListProjectsComponent extends Component {
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>DELETE</th>
                                 <th>Update</th>
                                 <th>Issues</th>
                             </tr>

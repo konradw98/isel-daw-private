@@ -24,7 +24,7 @@ class ListIssuesComponent extends Component {
 
     refreshIssues(id) {
         console.log("JESTEM W REFRESH ISSUE")
-        ProjectDataService.retrieveIssueForPeoject(id)
+        ProjectDataService.retrieveIssueForProject(id)
             .then(
                 response => {
                     //this.setState({ courses: response.data })
@@ -32,6 +32,16 @@ class ListIssuesComponent extends Component {
                     this.setState({issues:response.data})
                 }
             )
+    }
+
+    deleteIssueClicked(id){
+        ProjectDataService.deleteIssue(id)
+        .then(
+            response=>{
+                this.setState({message:'Delete of issue '+id+' Succesful'})
+                this.refreshIssues()
+            }
+        )
     }
 
 
@@ -48,18 +58,21 @@ class ListIssuesComponent extends Component {
                                 <th>Description</th>
                                 <th>Creation Date</th>
                                 <th>Closed Date</th>
+                                <th>DELETE</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 this.state.issues.map(
                                     issue =>
-                                        <tr key={issue.id}>
+                                        <tr key={issue.iid}>
                                             <td>{issue.iid}</td>
                                             <td>{issue.name}</td>
                                             <td>{issue.description}</td>
                                             <td>{issue.creationDate}</td>
                                             <td>{issue.closeDate}</td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteIssueClicked(issue.iid)}>Delete</button></td>
+
                                         </tr>
                                 )
                             }

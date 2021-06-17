@@ -4,6 +4,7 @@ import com.example.webapp.Models.Comment;
 import com.example.webapp.Models.Issue;
 import com.example.webapp.Services.IssueService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,9 @@ public class IssueController {
     }
 
     @DeleteMapping("/issues/{id}")
-    void deleteIssue(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteIssue(@PathVariable Long id) {
         issueService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("issues/project/{pid}")

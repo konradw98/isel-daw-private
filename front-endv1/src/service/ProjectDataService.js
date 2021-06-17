@@ -22,7 +22,13 @@ class ProjectDataService{
         return axios.delete('http://localhost:8080/projects/'+id);
     }
 
-    retrieveIssueForPeoject(id){
+    deleteIssue(id){
+        console.log('ececuted service dleteIssue')
+        console.log('id='+id)
+        return axios.delete('http://localhost:8080/issues/'+id);
+    }
+
+    retrieveIssueForProject(id){
         console.log('ececuted service retrieve Issue fprProject')
         console.log('id='+id)
         return axios.get('http://localhost:8080/issues/project/'+id);

@@ -26,7 +26,7 @@ public class Issue {
     @OneToMany(mappedBy = "issue")
     private List<Label> labels;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JsonIdentityReference(alwaysAsId = true)
     private Project project;
 
