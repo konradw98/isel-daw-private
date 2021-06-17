@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class CommentController {
     CommentService commentService;
@@ -32,7 +33,7 @@ public class CommentController {
 
     @PutMapping("/comments/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable(value = "id") Long commentId,
-                                                  @RequestBody Comment commentDetails) throws Exception {
+                                                 @RequestBody Comment commentDetails) throws Exception {
         Comment comment= commentService.findCommentById(commentId);
         if(comment==null) throw new Exception("Comment not found for this id :: " + commentId);
 
