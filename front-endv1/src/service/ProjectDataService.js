@@ -14,6 +14,12 @@ class ProjectDataService{
         console.log('id='+id)
         return axios.delete('http://localhost:8080/projects/'+id);
     }
+
+    retrieveProject(id){
+        console.log('ececuted service retrieve Project')
+        console.log('id='+id)
+        return axios.get('http://localhost:8080/projects/'+id);
+    }
 }
 
 export default new ProjectDataService();

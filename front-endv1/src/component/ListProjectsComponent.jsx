@@ -8,9 +8,14 @@ class ListProjectsComponent extends Component {
         this.state={
             projects: [],
             message: null
+            
         }
         this.refreshProjects=this.refreshProjects.bind(this)
         //this.deleteCourseClicked = this.deleteCourseClicked.bind(this)
+        //this.updateProjectClicked = this.updateProjectClicked.bind(this)
+        this.addProjectClicked = this.addProjectClicked.bind(this)
+
+
     }
 
     componentDidMount(){
@@ -37,6 +42,15 @@ class ListProjectsComponent extends Component {
         )
     }
 
+    updateProjectClicked(id) {
+        console.log('update ' + id)
+        this.props.history.push(`/projects/${id}`)
+    }
+
+    addProjectClicked() { // tu mi w ogole nie przechodzi ale to za chwile
+    
+        this.props.history.push(`/projects/-1`)
+    }
 
     render() {
         return (
@@ -49,6 +63,7 @@ class ListProjectsComponent extends Component {
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,11 +74,15 @@ class ListProjectsComponent extends Component {
                                         <td>{project.pid}</td>
                                         <td>{project.name}</td>
                                         <td><button className="btn btn-warning" onClick={() => this.deleteProjectClicked(project.pid)}>Delete</button></td>
+                                        <td><button className="btn btn-success" onClick={() => this.updateProjectClicked(project.pid)}>Update</button></td>
                                     </tr>
                                 )
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+    <button className="btn btn-success" onClick={this.addProjectClicked}>Add</button>
+</div>
                 </div>
             </div>
         )
