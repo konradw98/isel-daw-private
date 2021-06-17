@@ -20,7 +20,6 @@ public class Issue {
     private String description;
     private Date creationDate;
     private Date closeDate;
-    //private String label; // maybe it should be enum???
     @OneToMany(mappedBy = "issue")
     private List<State> states;
     //@JsonIgnoreProperties("lid")

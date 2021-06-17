@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 public class IssueController {
+
     IssueService issueService;
 
     @GetMapping("issues/{id}")
