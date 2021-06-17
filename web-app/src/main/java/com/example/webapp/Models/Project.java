@@ -9,7 +9,7 @@ import javax.persistence.*;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "pid")
 public class Project {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //bylo uusuniete bo cos sie odpierdallao, wiec moze teraz tez tak trzeba
     private long pid;
     @Column(unique=true)
     private String name;

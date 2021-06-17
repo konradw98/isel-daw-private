@@ -4,7 +4,14 @@ const PROJECT_API_URL='http://localhost:8080/projects/'
 
 
 class ProjectDataService{
+    updateProject(id, project){
+        return axios.put('http://localhost:8080/projects/'+id,project)
+    }
     
+    createProject(project){
+        return axios.post('http://localhost:8080/projects/',project)
+    }
+
     retrieveAllProjects(){
         return axios.get(PROJECT_API_URL);
     }
@@ -14,6 +21,8 @@ class ProjectDataService{
         console.log('id='+id)
         return axios.delete('http://localhost:8080/projects/'+id);
     }
+
+    
 
     retrieveProject(id){
         console.log('ececuted service retrieve Project')
