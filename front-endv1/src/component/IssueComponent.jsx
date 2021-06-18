@@ -14,19 +14,7 @@ class IssueComponent extends Component{
         }
     }
 
- /*   componentDidMount(){
-        console.log('jestem c omponent did mount w issuecomponent')
-        if(this.state.id==-1){
-            return
-        }
-        ProjectDataService.retrieveIssue(this.state.id)
-        .then(response=>{
-            this.setState({
-            name:response.data.name,
-            iid: response.data.iid
-        })})
-    }*/
-
+   
     render(){
 
         let {name,id,iid}=this.state

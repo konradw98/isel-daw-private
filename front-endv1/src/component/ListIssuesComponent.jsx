@@ -14,6 +14,11 @@ class ListIssuesComponent extends Component {
         }
 
         this.refreshIssues = this.refreshIssues.bind(this)
+        this.updateIssueClicked = this.updateIssueClicked.bind(this)
+        this.addIssueClicked = this.addIssueClicked.bind(this)
+
+
+    
     }
 
     
@@ -49,6 +54,9 @@ class ListIssuesComponent extends Component {
         this.props.history.push(`/issue/${id}`)
     }
 
+    addIssueClicked() {
+        this.props.history.push(`/issue/-1`)
+    }
 
     render(){
         return (
@@ -85,6 +93,9 @@ class ListIssuesComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+    <button className="btn btn-success" onClick={this.addIssueClicked}>Add</button>
+</div>
                 </div>
             </div>
         )
