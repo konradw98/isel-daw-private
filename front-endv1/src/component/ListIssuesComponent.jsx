@@ -58,6 +58,16 @@ class ListIssuesComponent extends Component {
         this.props.history.push(`/issue/-1`)
     }
 
+    showIssuesCommentsClicked(id){
+    
+            console.log("ID w issue comments clicked="+id)
+            //this.props.history.push(`issues/project/1`) 
+            //"issues/comments/{iid}")
+            this.props.history.push(`/issue/comments/${id}`) 
+        
+
+    }
+
     render(){
         return (
             <div className="container">
@@ -73,6 +83,7 @@ class ListIssuesComponent extends Component {
                                 <th>Closed Date</th>
                                 <th>DELETE</th>
                                 <th>UPDATE</th>
+                                <th>COMMENTS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,6 +98,8 @@ class ListIssuesComponent extends Component {
                                             <td>{issue.closeDate}</td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteIssueClicked(issue.iid)}>Delete</button></td>
                                             <td><button className="btn btn-success" onClick={() => this.updateIssueClicked(issue.iid)}>Update</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.showIssuesCommentsClicked(issue.iid)}>Show Comments</button></td>
+
 
                                         </tr>
                                 )
