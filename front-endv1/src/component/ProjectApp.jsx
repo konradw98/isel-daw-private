@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ListProjectsComponent from './ListProjectsComponent';
 import ProjectComponent from './ProjectComponent';
 import ListIssuesComponent from './ListIssuesComponent';
+import IssueComponent from './IssueComponent';
 
 
 class ProjectApp extends Component {
@@ -17,6 +18,7 @@ class ProjectApp extends Component {
                     <Route path="/projects/" exact component={ListProjectsComponent} />
                     <Route path="/projects/:id" exact component={ProjectComponent} />
                    <Route path="/issues/project/:id" exact component={ListIssuesComponent} />
+                   <Route path="/issue/:id" exact component={IssueComponent} />
                 </Switch>
             </>
             </Router>

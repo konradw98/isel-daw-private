@@ -44,6 +44,11 @@ class ListIssuesComponent extends Component {
         )
     }
 
+    updateIssueClicked(id) {
+        console.log('issue update ' + id)
+        this.props.history.push(`/issue/${id}`)
+    }
+
 
     render(){
         return (
@@ -59,6 +64,7 @@ class ListIssuesComponent extends Component {
                                 <th>Creation Date</th>
                                 <th>Closed Date</th>
                                 <th>DELETE</th>
+                                <th>UPDATE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +78,7 @@ class ListIssuesComponent extends Component {
                                             <td>{issue.creationDate}</td>
                                             <td>{issue.closeDate}</td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteIssueClicked(issue.iid)}>Delete</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateIssueClicked(issue.iid)}>Update</button></td>
 
                                         </tr>
                                 )
