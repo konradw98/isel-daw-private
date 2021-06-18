@@ -12,8 +12,8 @@ class ListCommentComponent extends Component{
         }
 
       this.refreshComments = this.refreshComments.bind(this)
-        //this.updateCommentClicked = this.updateCommentClicked.bind(this)
-       // this.addCommentClicked = this.addCommentClicked.bind(this)
+    this.updateCommentClicked = this.updateCommentClicked.bind(this)
+       this.addCommentClicked = this.addCommentClicked.bind(this)
 
 
     
@@ -38,34 +38,26 @@ class ListCommentComponent extends Component{
             )
     }
 
-   /* deleteIssueClicked(id){
-        ProjectDataService.deleteIssue(id)
+    deleteCommentClicked(id){
+        ProjectDataService.deleteComment(id)
         .then(
             response=>{
                 this.setState({message:'Delete of issue '+id+' Succesful'})
-                this.refreshIssues()
+                this.refreshComments(this.state.id)
             }
         )
     }
 
-    updateIssueClicked(id) {
-        console.log('issue update ' + id)
-        this.props.history.push(`/issue/${id}`)
+    updateCommentClicked(id) {
+        console.log('comment update ' + id)
+        this.props.history.push(`/comment/${id}`)
     }
 
-    addIssueClicked() {
-        this.props.history.push(`/issue/-1`)
+    addCommentClicked() {
+        this.props.history.push(`/comment/-1`)
     }
 
-    showIssuesCommentsClicked(id){
-    
-            console.log("ID w issue comments clicked="+id)
-            //this.props.history.push(`issues/project/1`) 
-            //"issues/comments/{iid}")
-            this.props.history.push(`/issue/comments/${id}`) 
-        
-
-    }*/
+   
 
     render(){
         return (
@@ -77,6 +69,8 @@ class ListCommentComponent extends Component{
                         <tr>
                             <th>Id</th>
                             <th>Description</th>
+                            <th>DELETE</th>
+                            <th>UPDATE</th>
                             
                         </tr>
                     </thead>
@@ -87,14 +81,15 @@ class ListCommentComponent extends Component{
                                     <tr key={comment.cid}>
                                         <td>{comment.cid}</td>
                                         <td>{comment.description}</td>
-                                        
-
+                                        <td><button className="btn btn-warning" onClick={() => this.deleteCommentClicked(comment.cid)}>Delete</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateCommentClicked(comment.cid)}>Update</button></td>
                                     </tr>
                             )
                         }
                     </tbody>
                 </table>
                 <div className="row">
+    <button className="btn btn-success" onClick={this.addCommentClicked}>Add</button>
 </div>
             </div>
         </div>

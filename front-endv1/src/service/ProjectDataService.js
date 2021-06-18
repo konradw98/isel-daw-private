@@ -71,6 +71,14 @@ class ProjectDataService{
     retrieveCommentForIssue(id){
         return axios.get('http://localhost:8080/issues/comments/'+id);
     }
+
+    deleteComment(id){
+        console.log('ececuted service dleteIssue')
+        console.log('id='+id)
+        return axios.delete('http://localhost:8080/comments/'+id);
+    }
+
+    
 }
 
 export default new ProjectDataService();
