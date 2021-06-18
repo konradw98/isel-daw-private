@@ -45,6 +45,28 @@ class ProjectDataService{
         console.log('id='+id)
         return axios.get('http://localhost:8080/issues/'+id);
     }
+
+    updateIssue(id, issue){
+        console.log("wykonuje updateIssue")
+        console.log("ISSUE IID="+issue.iid)
+        console.log("ISSUE name="+issue.name)
+        console.log("ISSUE desciption="+issue.description)
+        console.log("ISSUE project="+issue.project)
+
+        return axios.put('http://localhost:8080/issues/'+id,issue)
+    }
+
+    createIssue(issue){
+        console.log("wykonuje crateIssue")
+        console.log("ISSUE IID="+issue.iid)
+        console.log("ISSUE name="+issue.name)
+        console.log("ISSUE description="+issue.description)
+        console.log("ISSUE project="+issue.project)
+
+
+
+        return axios.post('http://localhost:8080/issues/',issue)
+    }
 }
 
 export default new ProjectDataService();

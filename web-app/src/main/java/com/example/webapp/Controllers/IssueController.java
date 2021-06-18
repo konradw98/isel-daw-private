@@ -4,10 +4,13 @@ import com.example.webapp.Models.Comment;
 import com.example.webapp.Models.Issue;
 import com.example.webapp.Models.Project;
 import com.example.webapp.Services.IssueService;
+import com.example.webapp.Services.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -15,34 +18,47 @@ import java.util.List;
 public class IssueController {
 
     IssueService issueService;
+    ProjectService projectService;
 
     @GetMapping("issues/{id}")
     public Issue getIssueById(@PathVariable Long id){
         return  issueService.findIssueById(id);
     }
 
+   // @CrossOrigin
     @PostMapping("issues/")
     @ResponseStatus(HttpStatus.CREATED)
     public Issue saveIssue(@RequestBody Issue issue){
-        return issueService.saveIssue(issue);
+        Issue issue1= new Issue();
+        issue1.setName(issue.getName());
+        issue1.setDescription(issue.getDescription());
+        Project project= projectService.findProjectById(issue.getProject().getPid());
+        issue1.setProject(project);
+        issue1.setCloseDate(Date.valueOf(LocalDate.now()));
+
+        return issueService.saveIssue(issue1);
     }
 
     @DeleteMapping("/issues/{id}")
     public ResponseEntity<Void> deleteIssue(@PathVariable Long id) {
-        issueService.deleteById(id);
+        issueService.deleteById(id); //ZAMIAST USUWANIA PO PROSTU USTAWIC CLOSED DATE I  ZMIENIC NAZWE POBIERANIA WSZYSTKICH TYLKO NA TA BEZ COSED DATE
         return ResponseEntity.noContent().build();
     }
+   // @CrossOrigin
     @PutMapping("issuess/{id}")
-    public Issue updateIssuetById(@RequestBody Issue issue){
-
-        return  issueService.saveIssue(issue);
+    public Issue updateIssuetById(@RequestBody Issue issue, @PathVariable long id){
+        Issue oldIssue=issueService.findIssueById(id);
+        oldIssue.setName(issue.getName());
+        oldIssue.setDescription(issue.getDescription());
+        return  issueService.saveIssue(oldIssue);
     }
     @GetMapping("issues/project/{pid}")
     public List<Issue> getIssuesByProjectId(@PathVariable Long pid){
         return  issueService.findIssuesByProjectId(pid);
     }
 
-    public IssueController(IssueService issueService) {
+    public IssueController(IssueService issueService, ProjectService projectService) {
         this.issueService = issueService;
+        this.projectService = projectService;
     }
 }

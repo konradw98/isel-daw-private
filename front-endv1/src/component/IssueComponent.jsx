@@ -12,7 +12,8 @@ class IssueComponent extends Component{
             id: this.props.match.params.id,
             name: null,
             description: null,
-            iid: null
+            iid: null,
+            project:100
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -27,21 +28,34 @@ class IssueComponent extends Component{
             .then(response=> this.setState({
                 name: response.data.name,
                 description: response.data.description,
-                iid: response.data.iid
-                
+                iid: response.data.iid,
+                project:response.data.project
             }))      
 
     }
 
     onSubmit(values) {
-        console.log(values);
+        let issue={
+            iid: this.state.id,
+            name: values.name,
+            description: values.description, 
+            project: this.state.project
+        }
+        if(this.state.id===-1){
+            ProjectDataService.createIssue(issue)
+            .then(()=> this.history.push("/issues/project/"+this.state.project))
+        } else {
+            ProjectDataService.updateIssue(this.state.id, issue)
+            .then(()=>this.props.history.push("/issues/project/"+this.state.project))
+        }
     }
    
     render(){
         console.log("rendername="+this.state.name)
         console.log("renderdescription="+this.state.description)
         console.log("renderiid="+this.state.iid)
-        
+        console.log("render PROJECT ID="+this.state.project)
+
         let {name,id,description}=this.state
 
         return (
@@ -52,6 +66,8 @@ class IssueComponent extends Component{
                         initialValues={{ id,name,description }}
                         onSubmit={this.onSubmit}
                         enableReinitialize={true}
+                        validateOnChange={false}
+                        validateOnBlur={false}
                     >
                         {
                             (props) => (
