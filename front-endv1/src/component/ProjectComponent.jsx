@@ -62,7 +62,7 @@ class ProjectComponent extends Component{
     }
 
     render(){
-
+        this.componentDidMount()
         let {name, id}= this.state 
         return (
             <div>

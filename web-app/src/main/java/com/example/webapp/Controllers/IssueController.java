@@ -2,6 +2,7 @@ package com.example.webapp.Controllers;
 
 import com.example.webapp.Models.Comment;
 import com.example.webapp.Models.Issue;
+import com.example.webapp.Models.Project;
 import com.example.webapp.Services.IssueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,11 @@ public class IssueController {
         issueService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("issuess/{id}")
+    public Issue updateIssuetById(@RequestBody Issue issue){
 
+        return  issueService.saveIssue(issue);
+    }
     @GetMapping("issues/project/{pid}")
     public List<Issue> getIssuesByProjectId(@PathVariable Long pid){
         return  issueService.findIssuesByProjectId(pid);

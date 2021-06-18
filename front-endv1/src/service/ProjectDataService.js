@@ -40,7 +40,7 @@ class ProjectDataService{
         return axios.get('http://localhost:8080/projects/'+id);
     }
 
-    retrieveIsue(id){
+    retrieveIssue(id){
         console.log('ececuted service retrieveIssue')
         console.log('id='+id)
         return axios.get('http://localhost:8080/issues/'+id);
