@@ -67,6 +67,10 @@ class ProjectDataService{
 
         return axios.post('http://localhost:8080/issues/',issue)
     }
+
+    retrieveCommentForIssue(id){
+        return axios.get('http://localhost:8080/issues/comments/'+id);
+    }
 }
 
 export default new ProjectDataService();

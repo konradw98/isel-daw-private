@@ -5,6 +5,7 @@ import ProjectComponent from './ProjectComponent';
 import ListIssuesComponent from './ListIssuesComponent';
 import IssueComponent from './IssueComponent';
 import CommentComponent from './CommentComponent';
+import ListCommentComponent from './ListCommentComponent';
 
 class ProjectApp extends Component {
     
@@ -19,7 +20,7 @@ class ProjectApp extends Component {
                     <Route path="/projects/:id" exact component={ProjectComponent} />
                    <Route path="/issues/project/:id" exact component={ListIssuesComponent} />
                    <Route path="/issue/:id" exact component={IssueComponent} />
-                   <Route path="/issue/comments/:id" exact component={CommentComponent} />
+                   <Route path="/issue/comments/:id" exact component={ListCommentComponent} />
                 </Switch>
             </>
             </Router>
