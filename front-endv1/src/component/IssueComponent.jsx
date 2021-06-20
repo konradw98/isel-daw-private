@@ -9,44 +9,54 @@ class IssueComponent extends Component{
         super(props)
 
         this.state={
-            id: this.props.match.params.id,
+            iid: this.props.match.params.iid,
             name: null,
             description: null,
-            iid: null,
-            project:100
+            project:this.props.match.params.pid,
+            state:null,
+            labels:null
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
 
     componentDidMount(){
         console.log("JESTEM W DID MOUNT ISSUE COMPONENt")
-        if(this.state.id==-1){
+        if(this.state.iid==-1){
             return
         }
 
-        ProjectDataService.retrieveIssue(this.state.id)
+        ProjectDataService.retrieveIssue(this.state.iid)
             .then(response=> this.setState({
                 name: response.data.name,
                 description: response.data.description,
                 iid: response.data.iid,
-                project:response.data.project
+                project:response.data.project,
+                state: response.data.state, 
+                labels: response.data.labels
             }))      
 
     }
 
     onSubmit(values) {
+        console.log("ON SUBMIT THIS STATE PROJECT="+this.state.project)
         let issue={
-            iid: this.state.id,
+            iid: this.state.iid,
             name: values.name,
             description: values.description, 
-            project: this.state.project
+            project: this.state.project,
+            state: values.state,
+            labels: values.labels
         }
-        if(this.state.id===-1){
+        if(this.state.iid==-1){
+            console.log("WYKONANO DODAWANIE ISSUE project="+this.state.project)
             ProjectDataService.createIssue(issue)
-            .then(()=> this.history.push("/issues/project/"+this.state.project))
+            .then(()=>this.props.history.push(`/issues/project/${this.state.project}`))
+        
+            
+            
         } else {
-            ProjectDataService.updateIssue(this.state.id, issue)
-            .then(()=>this.props.history.push("/issues/project/"+this.state.project))
+            ProjectDataService.updateIssue(this.state.iid, issue)
+            .then(()=>this.props.history.push(`/issues/project/${this.state.project}`))
         }
     }
    
@@ -56,14 +66,14 @@ class IssueComponent extends Component{
         console.log("renderiid="+this.state.iid)
         console.log("render PROJECT ID="+this.state.project)
 
-        let {name,id,description}=this.state
+        let {name,iid,description, state,labels, }=this.state
 
         return (
             <div>
                 <h3>Issue</h3>
                 <div className="container">
                     <Formik
-                        initialValues={{ id,name,description }}
+                        initialValues={{ iid,name,description, state, labels }}
                         onSubmit={this.onSubmit}
                         enableReinitialize={true}
                         validateOnChange={false}
@@ -74,7 +84,7 @@ class IssueComponent extends Component{
                                 <Form>
                                     <fieldset className="form-group">
                                         <label>Id</label>
-                                        <Field className="form-control" type="text" name='id' disabled />
+                                        <Field className="form-control" type="text" name='iid' disabled />
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Name</label>
@@ -83,6 +93,14 @@ class IssueComponent extends Component{
                                     <fieldset className="form-group">
                                         <label>Description</label>
                                         <Field className="form-control" type="text" name="description" />
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <label>State</label>
+                                        <Field className="form-control" type="text" name="state" />
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <label>Labels</label>
+                                        <Field className="form-control" type="text" name="labels" />
                                     </fieldset>
                                     <button className="btn btn-success" type="submit">Save</button>
                                 </Form>

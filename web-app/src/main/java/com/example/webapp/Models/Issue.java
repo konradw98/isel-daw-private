@@ -20,11 +20,11 @@ public class Issue {
     private String description;
     private Date creationDate;
     private Date closeDate;
-    @OneToMany(mappedBy = "issue")
-    private List<State> states;
+   // @OneToMany(mappedBy = "issue")
+    private String state;
     //@JsonIgnoreProperties("lid")
-    @OneToMany(mappedBy = "issue")
-    private List<Label> labels;
+   // @OneToMany(mappedBy = "issue")
+    private String labels;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JsonIdentityReference(alwaysAsId = true)
@@ -36,13 +36,13 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, List<State> states, List<Label> labels, Project project, List<Comment> comments) {
+    public Issue(long iid, String name, String description, Date creationDate, Date closeDate, String state, String labels, Project project, List<Comment> comments) {
         this.iid = iid;
         this.name = name;
         this.description = description;
         this.creationDate = creationDate;
         this.closeDate = closeDate;
-        this.states = states;
+        this.state = state;
         this.labels = labels;
         this.project = project;
         this.comments = comments;
@@ -88,20 +88,20 @@ public class Issue {
         this.closeDate = closeDate;
     }
 
-    public List<Label> getLabels() {
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getLabels() {
         return labels;
     }
 
-    public void setLabels(List<Label> labels) {
+    public void setLabels(String labels) {
         this.labels = labels;
-    }
-
-    public List<State> getStates() {
-        return states;
-    }
-
-    public void setStates(List<State> states) {
-        this.states = states;
     }
 
     public Project getProject() {

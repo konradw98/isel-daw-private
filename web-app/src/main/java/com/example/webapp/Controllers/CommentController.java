@@ -31,7 +31,7 @@ public class CommentController {
     @PostMapping("comments/")
     @ResponseStatus(HttpStatus.CREATED)
     public Comment saveComment(@RequestBody CommentAdapter comment){
-
+        // SPRAWDZAC CZY ISSUE NIE JEST ZAMKNIETE I WYRZUCAC WTEDY BLAD
         System.out.println("OLD COMMENT"+comment);
         Comment newComment=new Comment();
         newComment.setDescription(comment.getDescription());

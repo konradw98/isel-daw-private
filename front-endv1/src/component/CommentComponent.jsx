@@ -51,12 +51,12 @@ class CommentComponent extends Component{
 
         if (this.state.cid == -1) {
             ProjectDataService.createComment(comment)
-                .then(() => this.props.history.push(`/issue/comments/${this.state.iid}`))
+                .then(() => this.props.history.push(`/issues/comments/${this.state.iid}`))
         } else {
             console.log("W IFIE JESTEM W UPDATED")
 
             ProjectDataService.updateComment(comment)
-                .then(() => this.props.history.push(`/issue/comments/${this.state.iid}`))
+                .then(() => this.props.history.push(`/issues/comments/${this.state.iid}`))
         }
 
         console.log("comment id="+comment.cid);

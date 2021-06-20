@@ -2,6 +2,7 @@ package com.example.webapp.Controllers;
 
 import com.example.webapp.Models.Comment;
 import com.example.webapp.Models.Issue;
+import com.example.webapp.Models.IssueAdapter;
 import com.example.webapp.Models.Project;
 import com.example.webapp.Services.IssueService;
 import com.example.webapp.Services.ProjectService;
@@ -25,18 +26,26 @@ public class IssueController {
         return  issueService.findIssueById(id);
     }
 
-   // @CrossOrigin
+    @CrossOrigin
     @PostMapping("issues/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Issue saveIssue(@RequestBody Issue issue){
-        Issue issue1= new Issue();
+    public Issue saveIssue(@RequestBody IssueAdapter issueAdapter){
+       /* Issue issue1= new Issue();
         issue1.setName(issue.getName());
         issue1.setDescription(issue.getDescription());
         Project project= projectService.findProjectById(issue.getProject().getPid());
         issue1.setProject(project);
-        issue1.setCloseDate(Date.valueOf(LocalDate.now()));
+        issue1.setCloseDate(Date.valueOf(LocalDate.now()));*/
+        Issue issue= new Issue();
+        issue.setName(issueAdapter.getName());
+        issue.setDescription(issueAdapter.getDescription());
+        issue.setState(issueAdapter.getState());
+        issue.setLabels(issueAdapter.getLabels());
+        Project project= projectService.findProjectById(issueAdapter.getProject());
+        issue.setProject(project);
+        issue.setCreationDate(Date.valueOf(LocalDate.now()));
 
-        return issueService.saveIssue(issue1);
+        return issueService.saveIssue(issue);
     }
 
     @DeleteMapping("/issues/{id}")
