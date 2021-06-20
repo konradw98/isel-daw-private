@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,11 +28,12 @@ public class Issue {
    // @OneToMany(mappedBy = "issue")
     private String labels;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+
     @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne(cascade =CascadeType.DETACH)
     private Project project;
 
-    @OneToMany(mappedBy = "issue")
+    @OneToMany(mappedBy = "issue",cascade =CascadeType.REMOVE)
     private List<Comment> comments;
 
     public Issue() {

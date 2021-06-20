@@ -45,7 +45,7 @@ class ListIssuesComponent extends Component {
         .then(
             response=>{
                 this.setState({message:'Delete of issue '+id+' Succesful'})
-                this.refreshIssues()
+                this.refreshIssues(this.state.pid)
             }
         )
     }

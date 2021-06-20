@@ -13,7 +13,7 @@ class ProjectApp extends Component {
         return (
             <Router>
             <>
-                <h1>Project Application</h1>
+                <h1>Menage <a href="http://localhost:3000/">projects</a> App</h1>
                 <Switch>
                     <Route path="/" exact component={ListProjectsComponent} />
                     <Route path="/projects/" exact component={ListProjectsComponent} />

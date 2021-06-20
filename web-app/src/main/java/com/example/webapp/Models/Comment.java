@@ -12,7 +12,7 @@ public class Comment {
     private long cid;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.DETACH)
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name="issue_id")
     private Issue issue;
