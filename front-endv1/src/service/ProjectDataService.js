@@ -84,6 +84,17 @@ class ProjectDataService{
         return axios.get('http://localhost:8080/comments/'+id)
     }
 
+   createComment(comment){
+        console.log("wykonuje cratecomment")
+        console.log("Commen IID="+comment.cid)
+        console.log("ISSUE description="+comment.description)
+        console.log("ISSUE project="+comment.issue)
+
+
+
+        return axios.post('http://localhost:8080/comments/',comment)
+    }
+
 
 }
 

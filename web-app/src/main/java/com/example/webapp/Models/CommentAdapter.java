@@ -1,29 +1,20 @@
 package com.example.webapp.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
+public class CommentAdapter {
+    /* "cid": 1,
+    "description": "description1",
+    "issue": 1 */
+     private long cid;
+     private String description;
+     private long issue;
 
-import javax.persistence.*;
-
-@Entity
-public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cid;
-    private String description;
-
-    @ManyToOne
-    @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="issue_id")
-    private Issue issue;
-
-    public Comment() {
-    }
-
-    public Comment(long cid, String description, Issue issue) {
+    public CommentAdapter(long cid, String description, long issue) {
         this.cid = cid;
         this.description = description;
         this.issue = issue;
+    }
+
+    public CommentAdapter() {
     }
 
     public long getCid() {
@@ -42,17 +33,17 @@ public class Comment {
         this.description = description;
     }
 
-    public Issue getIssue() {
+    public long getIssue() {
         return issue;
     }
 
-    public void setIssue(Issue issue) {
+    public void setIssue(long issue) {
         this.issue = issue;
     }
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "CommentAdapter{" +
                 "cid=" + cid +
                 ", description='" + description + '\'' +
                 ", issue=" + issue +

@@ -48,13 +48,13 @@ class ListCommentComponent extends Component{
         )
     }
 
-    updateCommentClicked(id) {
-        console.log('comment update ' + id)
-        this.props.history.push(`/comment/${id}`)
+    updateCommentClicked(cid) {
+        console.log('comment update ' + cid)
+        this.props.history.push(`/issue/comment/${this.state.id}/${cid}`)
     }
 
     addCommentClicked() {
-        this.props.history.push(`/comment/-1`)
+        this.props.history.push(`/issue/comment/${this.state.id}/-1`)
     }
 
    

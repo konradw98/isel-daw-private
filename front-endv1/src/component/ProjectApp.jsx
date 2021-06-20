@@ -21,7 +21,7 @@ class ProjectApp extends Component {
                    <Route path="/issues/project/:id" exact component={ListIssuesComponent} />
                    <Route path="/issue/:id" exact component={IssueComponent} />
                    <Route path="/issue/comments/:id" exact component={ListCommentComponent} />
-                   <Route path="/comment/:id" exact component={CommentComponent} />
+                   <Route path="/issue/comment/:iid/:cid" exact component={CommentComponent} />
 
                 </Switch>
             </>
