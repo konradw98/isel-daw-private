@@ -52,17 +52,19 @@ public class CommentController {
       //  return commentService.saveComment(comment);
     }*/
 
-    @PutMapping("/comments/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable(value = "id") Long commentId,
-                                                 @RequestBody Comment commentDetails) throws Exception {
-        Comment comment= commentService.findCommentById(commentId);
+    @PutMapping("/comments/")
+    public ResponseEntity<Comment> updateComment(@RequestBody CommentAdapter commentAdapter) throws Exception {
+        /*Comment comment= commentService.findCommentById(commentId);
         if(comment==null) throw new Exception("Comment not found for this id :: " + commentId);
 
         comment.setCid(commentDetails.getCid());
         comment.setDescription(commentDetails.getDescription());
         comment.setIssue(commentDetails.getIssue());
-        final Comment updatedComment = commentService.save(comment);
-        return ResponseEntity.ok(updatedComment);
+        final Comment updatedComment = commentService.save(comment);*/
+        Comment comment=commentService.findCommentById(commentAdapter.getCid());
+        comment.setDescription(commentAdapter.getDescription());
+        commentService.save(comment);
+        return ResponseEntity.ok(comment);
     }
 
     @DeleteMapping("/comments/{id}")

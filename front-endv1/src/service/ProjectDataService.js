@@ -95,6 +95,16 @@ class ProjectDataService{
         return axios.post('http://localhost:8080/comments/',comment)
     }
 
+    updateComment(comment){
+        console.log("wykonuje UPDATEcomment")
+        console.log("Commen IID="+comment.cid)
+        console.log("ISSUE description="+comment.description)
+        console.log("ISSUE project="+comment.issue)
+
+        return axios.put('http://localhost:8080/comments/',comment)
+    }
+
+
 
 }
 

@@ -10,4 +10,5 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
         public List<Comment>  findCommentsByIssue_Iid(Long iid);
 
+        //public Comment updateCommentById()
 }

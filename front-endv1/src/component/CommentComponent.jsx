@@ -53,9 +53,10 @@ class CommentComponent extends Component{
             ProjectDataService.createComment(comment)
                 .then(() => this.props.history.push(`/issue/comments/${this.state.iid}`))
         } else {
-            /*CourseDataService.updateCourse(username, this.state.id, course)
-                .then(() => this.props.history.push('/courses'))*/
-                console.log("W IFIE ZLE PRZESZLO")
+            console.log("W IFIE JESTEM W UPDATED")
+
+            ProjectDataService.updateComment(comment)
+                .then(() => this.props.history.push(`/issue/comments/${this.state.iid}`))
         }
 
         console.log("comment id="+comment.cid);
