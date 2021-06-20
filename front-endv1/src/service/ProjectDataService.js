@@ -104,7 +104,13 @@ class ProjectDataService{
         return axios.put('http://localhost:8080/comments/',comment)
     }
 
+    //issue/close/{id}
+    closeIssue(id){
+        console.log("wykonuje close iisue id="+id)
+        
 
+        return axios.put('http://localhost:8080/issue/close/'+id)
+    }
 
 }
 

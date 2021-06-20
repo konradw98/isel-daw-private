@@ -64,6 +64,16 @@ public class IssueController {
 
         return  issueService.saveIssue(issue);
     }
+    @PutMapping("issue/close/{id}")
+    public Issue closeIssuetById(@PathVariable long id){
+        Issue issue=issueService.findIssueById(id);
+        issue.setState("CLOSED");
+        issue.setCloseDate(Date.valueOf(LocalDate.now()));
+
+
+        return  issueService.saveIssue(issue);
+    }
+
     @GetMapping("issues/project/{pid}")
     public List<Issue> getIssuesByProjectId(@PathVariable Long pid){
         return  issueService.findIssuesByProjectId(pid);

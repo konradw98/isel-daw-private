@@ -16,6 +16,7 @@ class ListIssuesComponent extends Component {
         this.refreshIssues = this.refreshIssues.bind(this)
         this.updateIssueClicked = this.updateIssueClicked.bind(this)
         this.addIssueClicked = this.addIssueClicked.bind(this)
+        this.closeIssueClicked = this.closeIssueClicked.bind(this)
 
 
     
@@ -53,6 +54,17 @@ class ListIssuesComponent extends Component {
         console.log('issue update ' + iid)
         this.props.history.push(`/issue/${iid}/${this.state.pid}`)
     }
+    
+    closeIssueClicked(id){
+        ProjectDataService.closeIssue(id)
+        .then(
+            response=>{
+                this.setState({message:'Close of issue '+id+' Succesful'})
+                this.refreshIssues(this.state.pid)
+            }
+        )
+    }
+        
 
     addIssueClicked() {
         this.props.history.push(`/issue/-1/${this.state.pid}`)
@@ -67,6 +79,8 @@ class ListIssuesComponent extends Component {
         
 
     }
+
+    
 
     render(){
         return (
@@ -102,7 +116,7 @@ class ListIssuesComponent extends Component {
                                             <td>{issue.creationDate}</td>
                                             <td>{issue.closeDate}</td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteIssueClicked(issue.iid)}>Delete</button></td>
-                                            <td><button className="btn btn-warning" onClick={() => this.deleteIssueClicked(issue.iid)}>ARCHIVED!!![zrobic]</button></td>
+                                            <td><button className="btn btn-warning" onClick={() => this.closeIssueClicked(issue.iid)}>CLOSE!</button></td>
                                             <td><button className="btn btn-success" onClick={() => this.updateIssueClicked(issue.iid)}>Update</button></td>
                                             <td><button className="btn btn-success" onClick={() => this.showIssuesCommentsClicked(issue.iid)}>Show Comments</button></td>
 
