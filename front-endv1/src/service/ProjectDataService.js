@@ -46,14 +46,14 @@ class ProjectDataService{
         return axios.get('http://localhost:8080/issues/'+id);
     }
 
-    updateIssue(id, issue){
+    updateIssue(issue){
         console.log("wykonuje updateIssue")
         console.log("ISSUE IID="+issue.iid)
         console.log("ISSUE name="+issue.name)
         console.log("ISSUE desciption="+issue.description)
         console.log("ISSUE project="+issue.project)
 
-        return axios.put('http://localhost:8080/issues/'+id,issue)
+        return axios.put('http://localhost:8080/issues/',issue)
     }
 
     createIssue(issue){

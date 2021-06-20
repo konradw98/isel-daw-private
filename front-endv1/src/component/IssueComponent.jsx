@@ -55,7 +55,7 @@ class IssueComponent extends Component{
             
             
         } else {
-            ProjectDataService.updateIssue(this.state.iid, issue)
+            ProjectDataService.updateIssue(issue)
             .then(()=>this.props.history.push(`/issues/project/${this.state.project}`))
         }
     }

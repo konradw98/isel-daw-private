@@ -54,12 +54,15 @@ public class IssueController {
         return ResponseEntity.noContent().build();
     }
    // @CrossOrigin
-    @PutMapping("issuess/{id}")
-    public Issue updateIssuetById(@RequestBody Issue issue, @PathVariable long id){
-        Issue oldIssue=issueService.findIssueById(id);
-        oldIssue.setName(issue.getName());
-        oldIssue.setDescription(issue.getDescription());
-        return  issueService.saveIssue(oldIssue);
+    @PutMapping("issues/")
+    public Issue updateIssuetById(@RequestBody IssueAdapter issueAdapter){
+        Issue issue=issueService.findIssueById(issueAdapter.getIid());
+        issue.setName(issueAdapter.getName());
+        issue.setDescription(issueAdapter.getDescription());
+        issue.setState(issueAdapter.getState());
+        issue.setLabels(issueAdapter.getLabels());
+
+        return  issueService.saveIssue(issue);
     }
     @GetMapping("issues/project/{pid}")
     public List<Issue> getIssuesByProjectId(@PathVariable Long pid){
