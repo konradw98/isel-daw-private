@@ -6,6 +6,7 @@ import ListIssuesComponent from './ListIssuesComponent';
 import IssueComponent from './IssueComponent';
 import CommentComponent from './CommentComponent';
 import ListCommentComponent from './ListCommentComponent';
+import LoginComponent from './LoginComponent';
 
 class ProjectApp extends Component {
     
@@ -13,10 +14,12 @@ class ProjectApp extends Component {
         return (
             <Router>
             <>
-                <h1>Menage <a href="http://localhost:3000/">projects</a> App</h1>
+                <h1>Menage <a href="http://localhost:3000/">projects</a> App!</h1>
+                
                 <Switch>
-                    <Route path="/" exact component={ListProjectsComponent} />
-                    <Route path="/projects/" exact component={ListProjectsComponent} />
+                <Route path="/" exact component={LoginComponent} />
+                 <Route path="/login" exact component={LoginComponent} />
+                 <Route path="/projects/" exact component={ListProjectsComponent} />
                     <Route path="/projects/:id" exact component={ProjectComponent} />
                    <Route path="/issues/project/:id" exact component={ListIssuesComponent} />
                    <Route path="/issue/:iid/:pid" exact component={IssueComponent} />

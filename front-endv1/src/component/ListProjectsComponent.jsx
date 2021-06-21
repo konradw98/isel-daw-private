@@ -64,7 +64,7 @@ class ListProjectsComponent extends Component {
     render() {
         return (
             <div className="container">
-                <h3>All Courses</h3>
+                <h3>All Projects</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">

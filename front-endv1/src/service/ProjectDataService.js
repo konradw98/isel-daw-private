@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const INSTRUCTOR = 'in28minutes'
+const PASSWORD = 'dummy'
 const PROJECT_API_URL='http://localhost:8080/projects/'
 
 
@@ -13,7 +15,9 @@ class ProjectDataService{
     }
 
     retrieveAllProjects(){
-        return axios.get(PROJECT_API_URL);
+        return axios.get(PROJECT_API_URL,
+            //{ headers: { authorization: 'Basic ' + window.btoa(INSTRUCTOR + ":" + PASSWORD) } }
+        );
     }
 
     deleteCourse(id){
